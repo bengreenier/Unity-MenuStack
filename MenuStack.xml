@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Assembly-CSharp</name>
+    </assembly>
+    <members>
+        <member name="P:MenuStack.Menu.Name">
+            <summary>
+            The runtime name for this menu
+            </summary>
+        </member>
+        <member name="P:MenuStack.Menu.Visible">
+            <summary>
+            Indicates if this menu is visible
+            </summary>
+        </member>
+        <member name="P:MenuStack.Menu.Interactable">
+            <summary>
+            Indicates if this menu is interactable
+            </summary>
+        </member>
+        <member name="F:MenuStack.Menu.CustomName">
+            <summary>
+            A custom name for this menu
+            </summary>
+            <remarks>
+            Overrides the default <see cref="P:MenuStack.Menu.Name"/>
+            </remarks>
+        </member>
+        <member name="F:MenuStack.Menu.uninitialized">
+            <summary>
+            Internal flag used to track when this object hasn't been <see cref="M:MenuStack.Menu.Start"/>-ed yet
+            </summary>
+        </member>
+        <member name="M:MenuStack.Menu.Start">
+            <summary>
+            Unity engine hook for object start
+            </summary>
+        </member>
+        <member name="M:MenuStack.Menu.SetInteractable(System.Boolean)">
+            <summary>
+            Setter to change the interactable state of this menu
+            </summary>
+            <remarks>
+            Note: this changes the state of the menus underlying <see cref="T:UnityEngine.UI.Selectable"/> components
+            </remarks>
+            <param name="value">new state</param>
+        </member>
+        <member name="M:MenuStack.Menu.SetVisible(System.Boolean)">
+            <summary>
+            Setter to change the visible state of this menu
+            </summary>
+            <remarks>
+            Note: this changes the state of the menus underlying <see cref="T:UnityEngine.GameObject"/>s
+            </remarks>
+            <param name="value">new state</param>
+        </member>
+        <member name="M:MenuStack.Menu.SetChildComponents``1(System.Boolean,System.Boolean)">
+            <summary>
+            Internal helper to disable child <see cref="T:UnityEngine.Behaviour"/>s
+            </summary>
+            <typeparam name="TComp">component type</typeparam>
+            <param name="value">new state</param>
+            <param name="skipMenus">indicates if we should include of exclude children with <see cref="T:MenuStack.Menu"/> components</param>
+        </member>
+        <member name="T:MenuStack.MenuRoot">
+            <summary>
+            Represents the root node (and controller) of a menu system
+            </summary>
+        </member>
+        <member name="T:MenuStack.MenuRoot.MenuChangedHandler">
+            <summary>
+            Menu event handler
+            </summary>
+            <param name="menu">the changed menu</param>
+        </member>
+        <member name="E:MenuStack.MenuRoot.Opened">
+            <summary>
+            Menu opened event. fired when a menu is opened
+            </summary>
+        </member>
+        <member name="E:MenuStack.MenuRoot.Closed">
+            <summary>
+            Menu closed event. fired when a menu is closed
+            </summary>
+        </member>
+        <member name="F:MenuStack.MenuRoot.DisableRuntimeMenuTagging">
+            <summary>
+            Disabling runtime menu tagging requires the caller to specify <see cref="F:MenuStack.MenuRoot.TrackedMenus"/> in order for anything to work
+            </summary>
+            <remarks>
+            The caller may find this useful if they see runtime perf costs of iterating over a large menu system
+            </remarks>
+        </member>
+        <member name="F:MenuStack.MenuRoot.MenuPrefix">
+            <summary>
+            A custom prefix with which menu components are identified
+            </summary>
+            <remarks>
+            This is only used when <see cref="F:MenuStack.MenuRoot.DisableRuntimeMenuTagging"/> is <c>false</c>
+            </remarks>
+        </member>
+        <member name="F:MenuStack.MenuRoot.TrackedMenus">
+            <summary>
+            Manually specify <see cref="T:MenuStack.Menu"/>s that this <see cref="T:MenuStack.MenuRoot"/> controls
+            </summary>
+            <remarks>
+            Overriden at runtime when <see cref="F:MenuStack.MenuRoot.DisableRuntimeMenuTagging"/> is <c>false</c>
+            </remarks>
+        </member>
+        <member name="F:MenuStack.MenuRoot.SelectedMenu">
+            <summary>
+            The initially selected menu
+            </summary>
+            <remarks>
+            If this isn't set, the first <see cref="T:MenuStack.Menu"/> in the heirarchy will be used
+            </remarks>
+        </member>
+        <member name="F:MenuStack.MenuRoot.history">
+            <summary>
+            Internal history stack
+            </summary>
+        </member>
+        <member name="M:MenuStack.MenuRoot.Awake">
+            <summary>
+            Unity engine hook for object awake
+            </summary>
+        </member>
+        <member name="M:MenuStack.MenuRoot.RTag(UnityEngine.Transform)">
+            <summary>
+            Recursive tagger for menu components
+            </summary>
+            <remarks>
+            Only used when <see cref="F:MenuStack.MenuRoot.DisableRuntimeMenuTagging"/> is <c>false</c>
+            </remarks>
+            <param name="root">the <see cref="T:UnityEngine.Transform"/> at which tagging should start</param>
+            <returns>a list of tagged <see cref="T:MenuStack.Menu"/> components</returns>
+        </member>
+        <member name="M:MenuStack.MenuRoot.Close">
+            <summary>
+            Closes the currently open menu
+            </summary>
+        </member>
+        <member name="M:MenuStack.MenuRoot.Open(MenuStack.Menu,System.Boolean)">
+            <summary>
+            Opens a particular menu
+            </summary>
+            <remarks>
+            If <param name="leaveOldVisible" /> is <c>true</c> ensure the <see cref="T:UnityEngine.RectTransform"/> z value is correctly set
+            </remarks>
+            <param name="menu"><see cref="T:MenuStack.Menu"/> to open</param>
+            <param name="leaveOldVisible">indicates if we should leave the current <see cref="T:MenuStack.Menu"/> visible</param>
+        </member>
+    </members>
+</doc>
