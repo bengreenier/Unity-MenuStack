@@ -40,7 +40,7 @@ namespace MenuStack.Navigation
             for (var i = 0; i < root.childCount; i++)
             {
                 var child = root.GetChild(i);
-                var menu = child.GetComponent<Menu>();
+                var menu = child.GetDerivedMenuComponent();
                 
                 if (menu != null && match.IsMatch(menu.name))
                 {

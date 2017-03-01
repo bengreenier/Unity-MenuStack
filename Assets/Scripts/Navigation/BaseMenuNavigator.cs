@@ -22,7 +22,7 @@ namespace MenuStack.Navigation
         /// </summary>
         public void Navigate()
         {
-            this.GetComponentInParent<MenuRoot>().Open(this.GetNavigationLocation());
+            this.GetComponentInParent<MenuRoot>().OpenAsync(this.GetNavigationLocation());
         }
     }
 }

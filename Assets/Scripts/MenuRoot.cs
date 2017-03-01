@@ -1,4 +1,6 @@
-﻿using System;
+using MenuStack.Animation;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -106,7 +108,7 @@ namespace MenuStack
 
             if (SelectedMenu != null)
             {
-                Open(SelectedMenu);
+                OpenAsync(SelectedMenu);
             }
         }
 
@@ -148,95 +150,121 @@ namespace MenuStack
 
             return tracked;
         }
-        
+
+
         /// <summary>
-        /// Closes the currently open menu
+        /// Opens a specific <see cref="Menu"/>
         /// </summary>
-        public void Close()
+        /// <param name="menu">the <see cref="Menu"/> to open</param>
+        public void OpenAsync(Menu menu)
+        {
+            StartCoroutine(OpenAsync_Internal(menu));
+        }
+
+        /// <summary>
+        /// Closes the currently open <see cref="Menu"/>
+        /// </summary>
+        public void CloseAsync()
+        {
+            StartCoroutine(CloseAsync_Internal());
+        }
+
+        /// <summary>
+        /// Internal helper for closing a menu
+        /// </summary>
+        /// <param name="menu">the <see cref="Menu"/> to close</param>
+        /// <param name="leaveVisible">indicates if we leave the <see cref="Menu"/> visible</param>
+        /// <returns></returns>
+        private IEnumerator CloseMenuAsync(Menu menu, bool leaveVisible = false)
+        {
+            if (menu == null)
+            {
+                yield break;
+            }
+
+            menu.SetInteractable(false);
+            
+            var animator = menu.GetComponent<MenuAnimator>();
+            if (animator != null)
+            {
+                yield return animator.CloseAsync();
+            }
+
+            if (!leaveVisible)
+            {
+                menu.SetVisible(false);
+            }
+
+            if (this.Closed != null)
+            {
+                this.Closed(menu);
+            }
+        }
+
+        /// <summary>
+        /// Internal helper for opening a menu
+        /// </summary>
+        /// <param name="menu">the <see cref="Menu"/> to open</param>
+        /// <returns></returns>
+        private IEnumerator OpenMenuAsync(Menu menu)
+        {
+            if (menu == null)
+            {
+                yield break;
+            }
+
+
+            menu.SetVisible(true);
+
+            var animator = menu.GetComponent<MenuAnimator>();
+            if (animator != null)
+            {
+                yield return animator.OpenAsync();
+            }
+
+            menu.SetInteractable(true);
+
+            if (this.Opened != null)
+            {
+                this.Opened(menu);
+            }
+        }
+
+        /// <summary>
+        /// Opens a specific <see cref="Menu"/>
+        /// </summary>
+        /// <param name="menu">the <see cref="Menu"/> to open</param>
+        private IEnumerator OpenAsync_Internal(Menu menu)
+        {
+            var top = history.Count == 0 ? null : history.Peek();
+
+            if (top != null)
+            {
+                yield return CloseMenuAsync(top, leaveVisible: (menu is OverlayMenu));
+            }
+
+            yield return OpenMenuAsync(menu);
+
+            history.Push(menu);
+        }
+
+        /// <summary>
+        /// Closes the currently open <see cref="Menu"/>
+        /// </summary>
+        private IEnumerator CloseAsync_Internal()
         {
             var top = history.Count == 0 ? null : history.Pop();
 
             if (top != null)
             {
-                // order here is significant (we don't disable interaction on components in inactive gameobjects)
-                top.SetInteractable(false);
-                top.SetVisible(false);
-
-                if (this.Closed != null)
-                {
-                    this.Closed(top);
-                }
+                yield return CloseMenuAsync(top);
             }
 
             var newTop = history.Count == 0 ? null : history.Peek();
 
             if (newTop != null)
             {
-                newTop.SetVisible(true);
-                newTop.SetInteractable(true);
-            }
-        }
-
-        /// <summary>
-        /// Opens a particular menu
-        /// </summary>
-        /// <remarks>
-        /// If <c>leaveOldVisible</c> is <c>true</c> ensure the <see cref="RectTransform"/> z value is correctly set
-        /// </remarks>
-        /// <param name="menu"><see cref="Menu"/> to open</param>
-        /// <param name="leaveOldVisible">indicates if we should leave the current <see cref="Menu"/> visible</param>
-        [Obsolete("Open(Menu, bool) has been deprecated. Use Open(Menu) with OverlayMenu components.", error: false)]
-        public void Open(Menu menu, bool leaveOldVisible = false)
-        {
-            var top = history.Count == 0 ? null : history.Peek();
-            
-            if (top != null)
-            {
-                top.SetInteractable(false);
-
-                if (!leaveOldVisible)
-                {
-                    top.SetVisible(false);
-                }
-            }
-
-            history.Push(menu);
-
-            menu.SetVisible(true);
-            menu.SetInteractable(true);
-
-            if (this.Opened != null)
-            {
-                this.Opened(menu);
-            }
-        }
-
-        /// <summary>
-        /// Opens a particular menu
-        /// </summary>
-        /// <param name="menu"><see cref="Menu"/> to open</param>
-        public void Open(Menu menu)
-        {
-            var top = history.Count == 0 ? null : history.Peek();
-
-            if (top != null)
-            {
-                top.SetInteractable(false);
-
-                if (!(menu is OverlayMenu))
-                {
-                    top.SetVisible(false);
-                }
-            }
-
-            history.Push(menu);
-
-            menu.SetVisible(true);
-            menu.SetInteractable(true);
-
-            if (this.Opened != null)
-            {
-                this.Opened(menu);
+                yield return OpenMenuAsync(newTop);
             }
         }
     }
