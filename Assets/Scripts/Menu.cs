@@ -74,11 +74,11 @@ namespace MenuStack
         {
             if (!value && (this.Interactable || this.uninitialized))
             {
-                SetChildComponents<Selectable>(false);
+                SetChildComponents<Selectable>(c => c.interactable = false);
             }
             else if (value && (!this.Interactable || this.uninitialized))
             {
-                SetChildComponents<Selectable>(true, skipMenus: true);
+                SetChildComponents<Selectable>(c => c.interactable = true, skipMenus: true);
             }
 
             this.Interactable = value;
@@ -109,9 +109,9 @@ namespace MenuStack
         /// Internal helper to enable/disable child <see cref="Behaviour"/>s
         /// </summary>
         /// <typeparam name="TComp">component type</typeparam>
-        /// <param name="value">new state</param>
+        /// <param name="setter">a function capable of setting</param>
         /// <param name="skipMenus">indicates if we should include of exclude children with <see cref="Menu"/> components</param>
-        private void SetChildComponents<TComp>(bool value, bool skipMenus = false) where TComp : Behaviour
+        private void SetChildComponents<TComp>(Action<TComp> setter, bool skipMenus = false) where TComp : Behaviour
         {
             foreach (var comp in this.GetComponentsInChildren<TComp>())
             {
@@ -120,7 +120,7 @@ namespace MenuStack
                     continue;
                 }
 
-                comp.enabled = value;
+                setter(comp);
             }
         }
 
