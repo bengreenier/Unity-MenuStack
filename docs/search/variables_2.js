@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['leavepreviousvisible',['LeavePreviousVisible',['../class_menu_stack_1_1_navigation_1_1_base_menu_navigator.html#a1d5ba04110c7d7c26ef0765431425920',1,'MenuStack::Navigation::BaseMenuNavigator']]]
+  ['menuprefix',['MenuPrefix',['../class_menu_stack_1_1_menu_root.html#afe3816dbac45adf4d94f1576707d1cff',1,'MenuStack::MenuRoot']]]
 ];
