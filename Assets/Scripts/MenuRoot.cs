@@ -139,8 +139,9 @@ namespace MenuStack
 
             if (top != null)
             {
-                top.SetVisible(false);
+                // order here is significant (we don't disable interaction on components in inactive gameobjects)
                 top.SetInteractable(false);
+                top.SetVisible(false);
 
                 if (this.Closed != null)
                 {
@@ -161,7 +162,7 @@ namespace MenuStack
         /// Opens a particular menu
         /// </summary>
         /// <remarks>
-        /// If <param name="leaveOldVisible" /> is <c>true</c> ensure the <see cref="RectTransform"/> z value is correctly set
+        /// If <c>leaveOldVisible</c> is <c>true</c> ensure the <see cref="RectTransform"/> z value is correctly set
         /// </remarks>
         /// <param name="menu"><see cref="Menu"/> to open</param>
         /// <param name="leaveOldVisible">indicates if we should leave the current <see cref="Menu"/> visible</param>

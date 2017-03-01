@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 namespace MenuStack
 {
+    /// <summary>
+    /// Represents any menu (a logical grouping of ui elements) within a <see cref="MenuRoot"/>
+    /// </summary>
     public class Menu : MonoBehaviour
     {
         /// <summary>
@@ -92,18 +95,18 @@ namespace MenuStack
         {
             if (!value && (this.Visible || this.uninitialized))
             {
-                this.gameObject.SetActive(false);
+                SetChildActive(false, skipMenus: true);
             }
             else if (value && (!this.Visible || this.uninitialized))
             {
-                this.gameObject.SetActive(true);
+                SetChildActive(true, skipMenus: true);
             }
 
             this.Visible = value;
         }
 
         /// <summary>
-        /// Internal helper to disable child <see cref="Behaviour"/>s
+        /// Internal helper to enable/disable child <see cref="Behaviour"/>s
         /// </summary>
         /// <typeparam name="TComp">component type</typeparam>
         /// <param name="value">new state</param>
@@ -116,8 +119,28 @@ namespace MenuStack
                 {
                     continue;
                 }
-                
+
                 comp.enabled = value;
+            }
+        }
+
+        /// <summary>
+        /// Internal helper to enable/disable child <see cref="GameObject"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="skipMenus">indicates if we should include of exclude children with <see cref="Menu"/> components</param>
+        private void SetChildActive(bool value, bool skipMenus = false)
+        {
+            for (var i = 0; i < this.transform.childCount; i++)
+            {
+                var child = this.transform.GetChild(i);
+
+                if (skipMenus && child.GetComponent<Menu>() != null)
+                {
+                    continue;
+                }
+
+                child.gameObject.SetActive(value);
             }
         }
     }

@@ -65,12 +65,18 @@ public class BasicTest
         subMenu2Root.transform.parent = menuRoot.transform;
         var subMenu2 = subMenu2Root.AddComponent<MenuStack.Menu>();
 
+        var subMenu2Object1 = new GameObject();
+        subMenu2Object1.transform.parent = subMenu2Root.transform;
+        subMenu2Object1.SetActive(true);
+
         menu.TrackedMenus = new MenuStack.Menu[] { subMenu1, subMenu2 };
 
         menu.GetType().GetMethod("Awake", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance).Invoke(menu, null);
 
+        // both will be active, since menus don't get disabled when they aren't visible (only their children do)
         Assert.IsTrue(subMenu1Root.activeInHierarchy);
-        Assert.IsFalse(subMenu2Root.activeInHierarchy);
+        Assert.IsTrue(subMenu2Root.activeInHierarchy);
+        Assert.IsFalse(subMenu2Object1.activeInHierarchy);
     }
 
     [Test]

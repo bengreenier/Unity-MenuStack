@@ -39,14 +39,16 @@ public class ComplexTest
         menu.GetType().GetMethod("Awake", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance).Invoke(menu, null);
 
         Assert.IsTrue(subMenu1Root.activeInHierarchy);
-        Assert.IsFalse(subMenu2Root.activeInHierarchy);
+        Assert.IsTrue(subMenu2Root.activeInHierarchy);
+        Assert.IsFalse(subMenu2ButtonRoot.activeInHierarchy);
         Assert.IsTrue(subMenu1Button.enabled);
         Assert.IsFalse(subMenu2Button.enabled);
 
         menu.Open(subMenu2);
 
-        Assert.IsFalse(subMenu1Root.activeInHierarchy);
+        Assert.IsTrue(subMenu1Root.activeInHierarchy);
         Assert.IsTrue(subMenu2Root.activeInHierarchy);
+        Assert.IsFalse(subMenu1ButtonRoot.activeInHierarchy);
         Assert.IsFalse(subMenu1Button.enabled);
         Assert.IsTrue(subMenu2Button.enabled);
     }
@@ -83,7 +85,8 @@ public class ComplexTest
         menu.GetType().GetMethod("Awake", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance).Invoke(menu, null);
 
         Assert.IsTrue(subMenu1Root.activeInHierarchy);
-        Assert.IsFalse(subMenu2Root.activeInHierarchy);
+        Assert.IsTrue(subMenu2Root.activeInHierarchy);
+        Assert.IsFalse(subMenu2ButtonRoot.activeInHierarchy);
         Assert.IsTrue(subMenu1Button.enabled);
         Assert.IsFalse(subMenu2Button.enabled);
 
@@ -91,6 +94,7 @@ public class ComplexTest
 
         Assert.IsTrue(subMenu1Root.activeInHierarchy);
         Assert.IsTrue(subMenu2Root.activeInHierarchy);
+        Assert.IsTrue(subMenu2ButtonRoot.activeInHierarchy);
         Assert.IsFalse(subMenu1Button.enabled);
         Assert.IsTrue(subMenu2Button.enabled);
     }
@@ -127,7 +131,8 @@ public class ComplexTest
         menu.GetType().GetMethod("Awake", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance).Invoke(menu, null);
 
         Assert.IsTrue(subMenu1Root.activeInHierarchy);
-        Assert.IsFalse(subMenu2Root.activeInHierarchy);
+        Assert.IsTrue(subMenu2Root.activeInHierarchy);
+        Assert.IsFalse(subMenu2ButtonRoot.activeInHierarchy);
         Assert.IsTrue(subMenu1Button.enabled);
         Assert.IsFalse(subMenu2Button.enabled);
 
@@ -141,7 +146,8 @@ public class ComplexTest
         menu.Open(subMenu2);
 
         Assert.IsTrue(wasMenuOpened);
-        Assert.IsFalse(subMenu1Root.activeInHierarchy);
+        Assert.IsTrue(subMenu1Root.activeInHierarchy);
+        Assert.IsFalse(subMenu1ButtonRoot.activeInHierarchy);
         Assert.IsTrue(subMenu2Root.activeInHierarchy);
         Assert.IsFalse(subMenu1Button.enabled);
         Assert.IsTrue(subMenu2Button.enabled);
@@ -157,7 +163,8 @@ public class ComplexTest
 
         Assert.IsTrue(wasMenuClosed);
         Assert.IsTrue(subMenu1Root.activeInHierarchy);
-        Assert.IsFalse(subMenu2Root.activeInHierarchy);
+        Assert.IsTrue(subMenu2Root.activeInHierarchy);
+        Assert.IsFalse(subMenu2ButtonRoot.activeInHierarchy);
         Assert.IsTrue(subMenu1Button.enabled);
         Assert.IsFalse(subMenu2Button.enabled);
     }
@@ -192,7 +199,11 @@ public class ComplexTest
         var subMenu2SubMenu1Root = new GameObject();
         subMenu2SubMenu1Root.transform.parent = subMenu2Root.transform;
         var subMenu2SubMenu1 = subMenu2SubMenu1Root.AddComponent<MenuStack.Menu>();
-        var subMenu2SubMenu1Button = subMenu2SubMenu1Root.AddComponent<UnityEngine.UI.Button>();
+
+        var subMenu2SubMenu1ButtonRoot = new GameObject();
+        subMenu2SubMenu1ButtonRoot.transform.parent = subMenu2SubMenu1Root.transform;
+
+        var subMenu2SubMenu1Button = subMenu2SubMenu1ButtonRoot.AddComponent<UnityEngine.UI.Button>();
         subMenu2SubMenu1Button.enabled = true;
 
         menu.TrackedMenus = new MenuStack.Menu[] { subMenu1, subMenu2, subMenu2SubMenu1 };
@@ -200,17 +211,20 @@ public class ComplexTest
         menu.GetType().GetMethod("Awake", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance).Invoke(menu, null);
 
         Assert.IsTrue(subMenu1Root.activeInHierarchy);
-        Assert.IsFalse(subMenu2Root.activeInHierarchy);
-        Assert.IsFalse(subMenu2SubMenu1Root.activeInHierarchy);
+        Assert.IsTrue(subMenu2Root.activeInHierarchy);
+        Assert.IsTrue(subMenu2SubMenu1Root.activeInHierarchy);
+        Assert.IsFalse(subMenu2SubMenu1ButtonRoot.activeInHierarchy);
         Assert.IsTrue(subMenu1Button.enabled);
         Assert.IsFalse(subMenu2Button.enabled);
         Assert.IsFalse(subMenu2SubMenu1Button.enabled);
 
         menu.Open(subMenu2);
 
-        Assert.IsFalse(subMenu1Root.activeInHierarchy);
+        Assert.IsTrue(subMenu1Root.activeInHierarchy);
+        Assert.IsFalse(subMenu1ButtonRoot.activeInHierarchy);
         Assert.IsTrue(subMenu2Root.activeInHierarchy);
-        Assert.IsFalse(subMenu2SubMenu1Root.activeInHierarchy);
+        Assert.IsTrue(subMenu2SubMenu1Root.activeInHierarchy);
+        Assert.IsFalse(subMenu2SubMenu1ButtonRoot.activeInHierarchy);
         Assert.IsFalse(subMenu1Button.enabled);
         Assert.IsTrue(subMenu2Button.enabled);
         Assert.IsFalse(subMenu2SubMenu1Button.enabled);

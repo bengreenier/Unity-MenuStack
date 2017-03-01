@@ -4,6 +4,11 @@
         <name>Assembly-CSharp</name>
     </assembly>
     <members>
+        <member name="T:MenuStack.Menu">
+            <summary>
+            Represents any menu (a logical grouping of ui elements) within a <see cref="T:MenuStack.MenuRoot"/>
+            </summary>
+        </member>
         <member name="P:MenuStack.Menu.Name">
             <summary>
             The runtime name for this menu
@@ -57,10 +62,17 @@
         </member>
         <member name="M:MenuStack.Menu.SetChildComponents``1(System.Boolean,System.Boolean)">
             <summary>
-            Internal helper to disable child <see cref="T:UnityEngine.Behaviour"/>s
+            Internal helper to enable/disable child <see cref="T:UnityEngine.Behaviour"/>s
             </summary>
             <typeparam name="TComp">component type</typeparam>
             <param name="value">new state</param>
+            <param name="skipMenus">indicates if we should include of exclude children with <see cref="T:MenuStack.Menu"/> components</param>
+        </member>
+        <member name="M:MenuStack.Menu.SetChildActive(System.Boolean,System.Boolean)">
+            <summary>
+            Internal helper to enable/disable child <see cref="T:UnityEngine.GameObject"/>
+            </summary>
+            <param name="value"></param>
             <param name="skipMenus">indicates if we should include of exclude children with <see cref="T:MenuStack.Menu"/> components</param>
         </member>
         <member name="T:MenuStack.MenuRoot">
@@ -146,10 +158,113 @@
             Opens a particular menu
             </summary>
             <remarks>
-            If <param name="leaveOldVisible" /> is <c>true</c> ensure the <see cref="T:UnityEngine.RectTransform"/> z value is correctly set
+            If <c>leaveOldVisible</c> is <c>true</c> ensure the <see cref="T:UnityEngine.RectTransform"/> z value is correctly set
             </remarks>
             <param name="menu"><see cref="T:MenuStack.Menu"/> to open</param>
             <param name="leaveOldVisible">indicates if we should leave the current <see cref="T:MenuStack.Menu"/> visible</param>
+        </member>
+        <member name="T:MenuStack.Navigation.BackMenuNavigator">
+            <summary>
+            Represents a menu navigator that goes back (effectively closing the current menu) in the <see cref="T:MenuStack.MenuRoot"/>
+            </summary>
+        </member>
+        <member name="M:MenuStack.Navigation.BackMenuNavigator.Navigate">
+            <summary>
+            Triggers navigation
+            </summary>
+        </member>
+        <member name="T:MenuStack.Navigation.BaseMenuNavigator">
+            <summary>
+            Base for a control capable of navigating to a different <see cref="T:MenuStack.Menu"/> within a <see cref="T:MenuStack.MenuRoot"/>
+            </summary>
+        </member>
+        <member name="F:MenuStack.Navigation.BaseMenuNavigator.LeavePreviousVisible">
+            <summary>
+            Allows the caller to decide to leave the previous menu visible
+            </summary>
+        </member>
+        <member name="M:MenuStack.Navigation.BaseMenuNavigator.GetNavigationLocation">
+            <summary>
+            Provides a location to navigate to, when navigation occurs
+            </summary>
+            <returns><see cref="T:MenuStack.Menu"/> to navigate to</returns>
+        </member>
+        <member name="M:MenuStack.Navigation.BaseMenuNavigator.Navigate">
+            <summary>
+            Triggers navigation
+            </summary>
+        </member>
+        <member name="T:MenuStack.Navigation.RegexMenuNavigator">
+            <summary>
+            Represents a menu navigator that navigates to the first <see cref="T:MenuStack.Menu"/> in the <see cref="T:MenuStack.MenuRoot"/> thats name matches some regex
+            </summary>
+        </member>
+        <member name="F:MenuStack.Navigation.RegexMenuNavigator.Regex">
+            <summary>
+            The regex string with which we try to match menus
+            </summary>
+            <remarks>
+            We'll start at <see cref="T:MenuStack.MenuRoot"/> and match the first found
+            </remarks>
+        </member>
+        <member name="M:MenuStack.Navigation.RegexMenuNavigator.GetNavigationLocation">
+            <summary>
+            Provides a location to navigate to, when navigation occurs
+            </summary>
+            <returns><see cref="T:MenuStack.Menu"/> to navigate to</returns>
+        </member>
+        <member name="M:MenuStack.Navigation.RegexMenuNavigator.FindFirstRecursively(UnityEngine.Transform,System.Text.RegularExpressions.Regex)">
+            <summary>
+            Internal recursive matcher
+            </summary>
+            <param name="root">the root level transform to start matching</param>
+            <param name="match">the regex to match against</param>
+            <returns>a matched <see cref="T:MenuStack.Menu"/>, or <c>null</c></returns>
+        </member>
+        <member name="T:MenuStack.Navigation.NextMenuNavigator">
+            <summary>
+            Represents a menu navigator that navigates the next <see cref="T:MenuStack.Menu"/> in the <see cref="T:MenuStack.MenuRoot"/>
+            </summary>
+        </member>
+        <member name="M:MenuStack.Navigation.NextMenuNavigator.GetNavigationLocation">
+            <summary>
+            Provides a location to navigate to, when navigation occurs
+            </summary>
+            <returns><see cref="T:MenuStack.Menu"/> to navigate to</returns>
+        </member>
+        <member name="M:MenuStack.Navigation.NextMenuNavigator.FindFirstRecursively(UnityEngine.Transform,MenuStack.Menu)">
+            <summary>
+            Internal recursive matcher
+            </summary>
+            <param name="root">the root level transform to start matching</param>
+            <param name="current">the current menu, we want the one after this</param>
+            <returns>a matched <see cref="T:MenuStack.Menu"/>, or <c>null</c></returns>
+        </member>
+        <member name="T:MenuStack.Navigation.DirectMenuNavigator">
+            <summary>
+            Represents a menu navigator that navigates to a specific <see cref="T:MenuStack.Menu"/> in the <see cref="T:MenuStack.MenuRoot"/>
+            </summary>
+        </member>
+        <member name="F:MenuStack.Navigation.DirectMenuNavigator.NavigateTo">
+            <summary>
+            The menu to directly navigate to
+            </summary>
+        </member>
+        <member name="M:MenuStack.Navigation.DirectMenuNavigator.GetNavigationLocation">
+            <summary>
+            Provides a location to navigate to, when navigation occurs
+            </summary>
+            <returns><see cref="T:MenuStack.Menu"/> to navigate to</returns>
+        </member>
+        <member name="T:MenuStack.Navigation.INavigator">
+            <summary>
+            Defines a common interface that all navigators implement
+            </summary>
+        </member>
+        <member name="M:MenuStack.Navigation.INavigator.Navigate">
+            <summary>
+            Triggers navigation
+            </summary>
         </member>
     </members>
 </doc>
