@@ -73,7 +73,7 @@ public class ComplexTest
 
         var subMenu2Root = new GameObject();
         subMenu2Root.transform.parent = menuRoot.transform;
-        var subMenu2 = subMenu2Root.AddComponent<MenuStack.Menu>();
+        var subMenu2 = subMenu2Root.AddComponent<MenuStack.OverlayMenu>();
 
         var subMenu2ButtonRoot = new GameObject();
         subMenu2ButtonRoot.transform.parent = subMenu2Root.transform;
@@ -90,13 +90,29 @@ public class ComplexTest
         Assert.IsTrue(subMenu1Button.enabled);
         Assert.IsFalse(subMenu2Button.enabled);
 
-        menu.Open(subMenu2, leaveOldVisible: true);
+        // block scope for old bool-driven API
+        {
+#pragma warning disable 0618
+            menu.Open(subMenu2, leaveOldVisible: true);
+#pragma warning restore 0618
 
-        Assert.IsTrue(subMenu1Root.activeInHierarchy);
-        Assert.IsTrue(subMenu2Root.activeInHierarchy);
-        Assert.IsTrue(subMenu2ButtonRoot.activeInHierarchy);
-        Assert.IsFalse(subMenu1Button.enabled);
-        Assert.IsTrue(subMenu2Button.enabled);
+            Assert.IsTrue(subMenu1Root.activeInHierarchy);
+            Assert.IsTrue(subMenu2Root.activeInHierarchy);
+            Assert.IsTrue(subMenu2ButtonRoot.activeInHierarchy);
+            Assert.IsFalse(subMenu1Button.enabled);
+            Assert.IsTrue(subMenu2Button.enabled);
+        }
+
+        // block scope for new class-driven API
+        {
+            menu.Open(subMenu2);
+
+            Assert.IsTrue(subMenu1Root.activeInHierarchy);
+            Assert.IsTrue(subMenu2Root.activeInHierarchy);
+            Assert.IsTrue(subMenu2ButtonRoot.activeInHierarchy);
+            Assert.IsFalse(subMenu1Button.enabled);
+            Assert.IsTrue(subMenu2Button.enabled);
+        }
     }
 
     /// <summary>

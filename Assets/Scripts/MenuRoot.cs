@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace MenuStack
@@ -46,6 +47,15 @@ namespace MenuStack
         /// </remarks>
         [Tooltip("The prefix with which menu objects should begin")]
         public string MenuPrefix = "menu";
+
+        /// <summary>
+        /// A custom prefix with which overlay menu components are identified
+        /// </summary>
+        /// <remarks>
+        /// This is only used when <see cref="DisableRuntimeMenuTagging"/> is <c>false</c>
+        /// </remarks>
+        [Tooltip("The prefix with which overlay menu objects should begin")]
+        public string OverlayPrefix = "overlay";
 
         /// <summary>
         /// Manually specify <see cref="Menu"/>s that this <see cref="MenuRoot"/> controls
@@ -120,6 +130,10 @@ namespace MenuStack
                 {
                     menu = child.gameObject.AddComponent<Menu>();
                 }
+                else if (child.name.StartsWith(OverlayPrefix) && menu == null)
+                {
+                    menu = child.gameObject.AddComponent<OverlayMenu>();
+                }
 
                 if (menu != null)
                 {
@@ -171,7 +185,37 @@ namespace MenuStack
         /// </remarks>
         /// <param name="menu"><see cref="Menu"/> to open</param>
         /// <param name="leaveOldVisible">indicates if we should leave the current <see cref="Menu"/> visible</param>
+        [Obsolete("Open(Menu, bool) has been deprecated. Use Open(Menu) with OverlayMenu components.", error: false)]
         public void Open(Menu menu, bool leaveOldVisible = false)
+        {
+            var top = history.Count == 0 ? null : history.Peek();
+            
+            if (top != null)
+            {
+                top.SetInteractable(false);
+
+                if (!leaveOldVisible)
+                {
+                    top.SetVisible(false);
+                }
+            }
+
+            history.Push(menu);
+
+            menu.SetVisible(true);
+            menu.SetInteractable(true);
+
+            if (this.Opened != null)
+            {
+                this.Opened(menu);
+            }
+        }
+
+        /// <summary>
+        /// Opens a particular menu
+        /// </summary>
+        /// <param name="menu"><see cref="Menu"/> to open</param>
+        public void Open(Menu menu)
         {
             var top = history.Count == 0 ? null : history.Peek();
 
@@ -179,7 +223,7 @@ namespace MenuStack
             {
                 top.SetInteractable(false);
 
-                if (!leaveOldVisible)
+                if (!(menu is OverlayMenu))
                 {
                     top.SetVisible(false);
                 }

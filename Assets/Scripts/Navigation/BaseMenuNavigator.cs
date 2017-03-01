@@ -12,11 +12,6 @@ namespace MenuStack.Navigation
     public abstract class BaseMenuNavigator : MonoBehaviour, INavigator
     {
         /// <summary>
-        /// Allows the caller to decide to leave the previous menu visible
-        /// </summary>
-        public bool LeavePreviousVisible = false;
-
-        /// <summary>
         /// Provides a location to navigate to, when navigation occurs
         /// </summary>
         /// <returns><see cref="Menu"/> to navigate to</returns>
@@ -27,7 +22,7 @@ namespace MenuStack.Navigation
         /// </summary>
         public void Navigate()
         {
-            this.GetComponentInParent<MenuRoot>().Open(this.GetNavigationLocation(), this.LeavePreviousVisible);
+            this.GetComponentInParent<MenuRoot>().Open(this.GetNavigationLocation());
         }
     }
 }
