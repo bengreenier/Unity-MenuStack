@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['findfirstrecursively',['FindFirstRecursively',['../class_menu_stack_1_1_navigation_1_1_next_menu_navigator.html#ac3edf24944a0889e1e9999be46f8581a',1,'MenuStack.Navigation.NextMenuNavigator.FindFirstRecursively()'],['../class_menu_stack_1_1_navigation_1_1_regex_menu_navigator.html#a9bf07fff063c2ba83b163fa9a8f1f95d',1,'MenuStack.Navigation.RegexMenuNavigator.FindFirstRecursively()']]]
+  ['defaultstatename',['DefaultStateName',['../class_menu_stack_1_1_animation_1_1_menu_animator.html#aac2eedabf79319538ea496b54bc3a819',1,'MenuStack::Animation::MenuAnimator']]],
+  ['directmenunavigator',['DirectMenuNavigator',['../class_menu_stack_1_1_navigation_1_1_direct_menu_navigator.html',1,'MenuStack::Navigation']]],
+  ['disableruntimemenutagging',['DisableRuntimeMenuTagging',['../class_menu_stack_1_1_menu_root.html#a547c2b72a5875518fad4f42082b068e9',1,'MenuStack::MenuRoot']]]
 ];

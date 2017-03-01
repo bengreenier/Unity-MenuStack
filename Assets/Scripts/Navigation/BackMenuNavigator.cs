@@ -16,7 +16,7 @@ namespace MenuStack.Navigation
         /// </summary>
         public void Navigate()
         {
-            this.GetComponentInParent<MenuRoot>().Close();
+            this.GetComponentInParent<MenuRoot>().CloseAsync();
         }
     }
 }
