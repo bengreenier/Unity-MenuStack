@@ -3,6 +3,11 @@ using UnityEngine;
 
 namespace MenuStack
 {
+    /**
+     * \mainpage unity-menustack docs
+     * You probably want to check out the <a href='./annotated.html'>Class List</a> 
+     */
+
     /// <summary>
     /// Represents the root node (and controller) of a menu system
     /// </summary>
