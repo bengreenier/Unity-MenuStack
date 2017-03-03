@@ -108,12 +108,15 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:ab5f4c182fb7325775efeae5ceb3cfd4c"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_menu_stack_1_1_menu_root.html#ab5f4c182fb7325775efeae5ceb3cfd4c">OverlayPrefix</a> = &quot;overlay&quot;</td></tr>
 <tr class="memdesc:ab5f4c182fb7325775efeae5ceb3cfd4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">A custom prefix with which overlay menu components are identified  <a href="#ab5f4c182fb7325775efeae5ceb3cfd4c">More...</a><br /></td></tr>
 <tr class="separator:ab5f4c182fb7325775efeae5ceb3cfd4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab3c37991ec0d4ffc4dd82385f5ba7b37"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_menu_stack_1_1_menu.html">Menu</a> []&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_menu_stack_1_1_menu_root.html#ab3c37991ec0d4ffc4dd82385f5ba7b37">TrackedMenus</a></td></tr>
+<tr class="memitem:ab3c37991ec0d4ffc4dd82385f5ba7b37"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_menu_stack_1_1_menu.html">Menu</a> []&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_menu_stack_1_1_menu_root.html#ab3c37991ec0d4ffc4dd82385f5ba7b37">TrackedMenus</a> = null</td></tr>
 <tr class="memdesc:ab3c37991ec0d4ffc4dd82385f5ba7b37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manually specify <a class="el" href="class_menu_stack_1_1_menu.html" title="Represents any menu (a logical grouping of ui elements) within a MenuRoot ">Menu</a>s that this <a class="el" href="class_menu_stack_1_1_menu_root.html" title="Represents the root node (and controller) of a menu system ">MenuRoot</a> controls  <a href="#ab3c37991ec0d4ffc4dd82385f5ba7b37">More...</a><br /></td></tr>
 <tr class="separator:ab3c37991ec0d4ffc4dd82385f5ba7b37"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adfbd9377c809d7c6f43a5d1f00cfa2a7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_menu_stack_1_1_menu.html">Menu</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_menu_stack_1_1_menu_root.html#adfbd9377c809d7c6f43a5d1f00cfa2a7">SelectedMenu</a></td></tr>
+<tr class="memitem:adfbd9377c809d7c6f43a5d1f00cfa2a7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_menu_stack_1_1_menu.html">Menu</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_menu_stack_1_1_menu_root.html#adfbd9377c809d7c6f43a5d1f00cfa2a7">SelectedMenu</a> = null</td></tr>
 <tr class="memdesc:adfbd9377c809d7c6f43a5d1f00cfa2a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The initially selected menu  <a href="#adfbd9377c809d7c6f43a5d1f00cfa2a7">More...</a><br /></td></tr>
 <tr class="separator:adfbd9377c809d7c6f43a5d1f00cfa2a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97373e6ca2767ae04a65d5ff0b8895d6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_menu_stack_1_1_runtime_menu_tagger.html">RuntimeMenuTagger</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_menu_stack_1_1_menu_root.html#a97373e6ca2767ae04a65d5ff0b8895d6">Tagger</a> = null</td></tr>
+<tr class="memdesc:a97373e6ca2767ae04a65d5ff0b8895d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specific tagger to use to tag menus  <a href="#a97373e6ca2767ae04a65d5ff0b8895d6">More...</a><br /></td></tr>
+<tr class="separator:a97373e6ca2767ae04a65d5ff0b8895d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="events"></a>
 Events</h2></td></tr>
@@ -257,13 +260,30 @@ Events</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_menu_stack_1_1_menu.html">Menu</a> MenuStack.MenuRoot.SelectedMenu</td>
+          <td class="memname"><a class="el" href="class_menu_stack_1_1_menu.html">Menu</a> MenuStack.MenuRoot.SelectedMenu = null</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>The initially selected menu </p>
 <p>If this isn't set, the first <a class="el" href="class_menu_stack_1_1_menu.html" title="Represents any menu (a logical grouping of ui elements) within a MenuRoot ">Menu</a> in the heirarchy will be used </p>
+
+</div>
+</div>
+<a id="a97373e6ca2767ae04a65d5ff0b8895d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97373e6ca2767ae04a65d5ff0b8895d6">&#9670;&nbsp;</a></span>Tagger</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_menu_stack_1_1_runtime_menu_tagger.html">RuntimeMenuTagger</a> MenuStack.MenuRoot.Tagger = null</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Specific tagger to use to tag menus </p>
+<p>This is only used when <a class="el" href="class_menu_stack_1_1_menu_root.html#a547c2b72a5875518fad4f42082b068e9" title="Disabling runtime menu tagging requires the caller to specify TrackedMenus in order for anything to w...">DisableRuntimeMenuTagging</a> is <code>false</code> </p>
 
 </div>
 </div>
@@ -274,7 +294,7 @@ Events</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_menu_stack_1_1_menu.html">Menu</a> [] MenuStack.MenuRoot.TrackedMenus</td>
+          <td class="memname"><a class="el" href="class_menu_stack_1_1_menu.html">Menu</a> [] MenuStack.MenuRoot.TrackedMenus = null</td>
         </tr>
       </table>
 </div><div class="memdoc">
