@@ -39,7 +39,7 @@ namespace MenuStack
         /// The caller may find this useful if they see runtime perf costs of iterating over a large menu system
         /// </remarks>
         [Tooltip("With this on, we won't auto tag the menu tree at runtime")]
-        public bool DisableRuntimeMenuTagging = true;
+        public bool DisableRuntimeMenuTagging = false;
 
         /// <summary>
         /// A custom prefix with which menu components are identified
