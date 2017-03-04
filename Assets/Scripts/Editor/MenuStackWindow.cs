@@ -94,6 +94,11 @@ namespace MenuStack.Editor
             {
                 Cleanup();
             }
+            if (GUILayout.Button("Save"))
+            {
+                // save just means don't undo
+                history.Clear();
+            }
             GUI.enabled = true;
 
             // create a vertical section full of menus that you can toggle visibility on/off for
