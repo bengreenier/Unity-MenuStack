@@ -107,7 +107,7 @@ public class BasicTest
 
         menu.GetType().GetMethod("Awake", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance).Invoke(menu, null);
 
-        Assert.IsTrue(subMenu1Button.enabled);
-        Assert.IsFalse(subMenu2Button.enabled);
+        Assert.IsTrue(subMenu1Button.interactable);
+        Assert.IsFalse(subMenu2Button.interactable);
     }
 }
