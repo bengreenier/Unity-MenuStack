@@ -5,9 +5,10 @@ var indexSectionsWithContent =
   2: "m",
   3: "cfgmnorst",
   4: "acdmnorst",
-  5: "inv",
-  6: "co",
-  7: "u"
+  5: "i",
+  6: "inv",
+  7: "co",
+  8: "u"
 };
 
 var indexSectionNames =
@@ -17,9 +18,10 @@ var indexSectionNames =
   2: "namespaces",
   3: "functions",
   4: "variables",
-  5: "properties",
-  6: "events",
-  7: "pages"
+  5: "enums",
+  6: "properties",
+  7: "events",
+  8: "pages"
 };
 
 var indexSectionLabels =
@@ -29,8 +31,9 @@ var indexSectionLabels =
   2: "Namespaces",
   3: "Functions",
   4: "Variables",
-  5: "Properties",
-  6: "Events",
-  7: "Pages"
+  5: "Enumerations",
+  6: "Properties",
+  7: "Events",
+  8: "Pages"
 };
 

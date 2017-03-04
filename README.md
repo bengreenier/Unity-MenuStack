@@ -13,14 +13,14 @@ Managing the navigation of menu systems in unity is sucky. __It shouldn't be__.
 
 ### Prefixing
 
-> By default, prefixing is disabled, since it costs us perf. To use it, set `MenuRoot.DisableRuntimeTagging` to `false`
+> By default, prefixing is enabled, but it costs us perf. To disable it, set `MenuRoot.DisableRuntimeTagging` to `true`
 
 Prefixing allows the building of menus given just `GameObject` names. At runtime, `Menu` or `OverlayMenu` components are added
 to facilitate the actual behaviours we expect.
 
 You can tune which prefixes the system uses with `MenuRoot.MenuPrefix` and `MenuRoot.OverlayPrefix`.
 
-Since this is disabled by default, it's expected that you'll manually add `Menu` or `MenuOverlay` components yourself, to save cycles.
+Since this is enabled by default, you don't need to worry about manually adding `Menu` or `MenuOverlay` components yourself.
 
 ### Basic
 
@@ -45,7 +45,7 @@ See [Assets/Examples/ComplexLayoutRigged.unity](./Assets/Examples/ComplexLayoutR
 That said, the general idea is as follows:  
 
 + Add some `INavigator` to a component that should trigger navigation
-+ Wire the trigger such that it calls `INavigator.Navigate()`
++ Wire the trigger such that it calls `INavigator.Navigate()` (note: if the trigger is a button, it will be auto wired)
 + Configure additional properties of the specific `INavigator` you chose
 
 Here's a button that's configured as a [BackMenuNavigator](https://bengreenier.github.io/Unity-MenuStack/class_menu_stack_1_1_navigation_1_1_back_menu_navigator.html):
@@ -70,6 +70,15 @@ That said, the general idea is as follows:
 + [Optional] you probably don't want your animation clips to loop, so select them, and turn off looping in the inspector
 
 This will make your menus transition from `Close` to `Open` when they open, and `Open` to `Close` when they close.
+
+### Hierarchy viewer
+
+> Hierarchy viewer is currently a beta feature, and should be treated as such!
+
+The included `Window/MenuStack/Hierarchy` panel can be used to visualize the menustack and control visibility of different menus to make them easier to work with.
+When using this view, all history is tracked, and can be Reverted with the `Reset` button. Further, changes can be saved with the `Save` Button.
+
+![screenshot editorwindow](./docs/img/editorwindow.png)
 
 ## Examples
 

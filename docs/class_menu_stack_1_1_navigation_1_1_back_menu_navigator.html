@@ -66,6 +66,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="class_menu_stack_1_1_navigation_1_1_back_menu_navigator-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">MenuStack.Navigation.BackMenuNavigator Class Reference</div>  </div>
@@ -80,37 +81,83 @@ Inheritance diagram for MenuStack.Navigation.BackMenuNavigator:</div>
  <div class="center">
   <img src="class_menu_stack_1_1_navigation_1_1_back_menu_navigator.png" usemap="#MenuStack.Navigation.BackMenuNavigator_map" alt=""/>
   <map id="MenuStack.Navigation.BackMenuNavigator_map" name="MenuStack.Navigation.BackMenuNavigator_map">
+<area href="class_menu_stack_1_1_navigation_1_1_base_menu_navigator.html" title="Base for a control capable of navigating to a different Menu within a MenuRoot " alt="MenuStack.Navigation.BaseMenuNavigator" shape="rect" coords="134,56,392,80"/>
 <area href="interface_menu_stack_1_1_navigation_1_1_i_navigator.html" title="Defines a common interface that all navigators implement " alt="MenuStack.Navigation.INavigator" shape="rect" coords="268,0,526,24"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab5bdf0e2999ca0a44bc3510a0650af81"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_menu_stack_1_1_navigation_1_1_back_menu_navigator.html#ab5bdf0e2999ca0a44bc3510a0650af81">Navigate</a> ()</td></tr>
-<tr class="memdesc:ab5bdf0e2999ca0a44bc3510a0650af81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Triggers navigation  <a href="#ab5bdf0e2999ca0a44bc3510a0650af81">More...</a><br /></td></tr>
-<tr class="separator:ab5bdf0e2999ca0a44bc3510a0650af81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85f8e0e3cfdcb496f189b1855f3a3ead"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_menu_stack_1_1_navigation_1_1_back_menu_navigator.html#a85f8e0e3cfdcb496f189b1855f3a3ead">Navigate</a> ()</td></tr>
+<tr class="memdesc:a85f8e0e3cfdcb496f189b1855f3a3ead"><td class="mdescLeft">&#160;</td><td class="mdescRight">Triggers navigation  <a href="#a85f8e0e3cfdcb496f189b1855f3a3ead">More...</a><br /></td></tr>
+<tr class="separator:a85f8e0e3cfdcb496f189b1855f3a3ead"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:ab4c18cae3aa5a251dd8456775fa97eda"><td class="memItemLeft" align="right" valign="top">override <a class="el" href="class_menu_stack_1_1_menu.html">Menu</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_menu_stack_1_1_navigation_1_1_back_menu_navigator.html#ab4c18cae3aa5a251dd8456775fa97eda">GetNavigationLocation</a> ()</td></tr>
+<tr class="memdesc:ab4c18cae3aa5a251dd8456775fa97eda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Not implemented  <a href="#ab4c18cae3aa5a251dd8456775fa97eda">More...</a><br /></td></tr>
+<tr class="separator:ab4c18cae3aa5a251dd8456775fa97eda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Represents a menu navigator that goes back (effectively closing the current menu) in the <a class="el" href="class_menu_stack_1_1_menu_root.html" title="Represents the root node (and controller) of a menu system ">MenuRoot</a> </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="ab5bdf0e2999ca0a44bc3510a0650af81"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab5bdf0e2999ca0a44bc3510a0650af81">&#9670;&nbsp;</a></span>Navigate()</h2>
+<a id="ab4c18cae3aa5a251dd8456775fa97eda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4c18cae3aa5a251dd8456775fa97eda">&#9670;&nbsp;</a></span>GetNavigationLocation()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void MenuStack.Navigation.BackMenuNavigator.Navigate </td>
+          <td class="memname">override <a class="el" href="class_menu_stack_1_1_menu.html">Menu</a> MenuStack.Navigation.BackMenuNavigator.GetNavigationLocation </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Not implemented </p>
+<p>Since the <a class="el" href="class_menu_stack_1_1_navigation_1_1_back_menu_navigator.html" title="Represents a menu navigator that goes back (effectively closing the current menu) in the MenuRoot ...">BackMenuNavigator</a> overrides navigate to make a raw call to the <a class="el" href="class_menu_stack_1_1_menu_root.html" title="Represents the root node (and controller) of a menu system ">MenuRoot</a> we do not actually need the implemented <a class="el" href="class_menu_stack_1_1_navigation_1_1_back_menu_navigator.html#ab4c18cae3aa5a251dd8456775fa97eda" title="Not implemented ">GetNavigationLocation</a> - however, it must have some implementation because it's an abstract method in <a class="el" href="class_menu_stack_1_1_navigation_1_1_base_menu_navigator.html" title="Base for a control capable of navigating to a different Menu within a MenuRoot ">BaseMenuNavigator</a> (by design, navigators should not use this pattern) but back is super special :) </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p>Implements <a class="el" href="class_menu_stack_1_1_navigation_1_1_base_menu_navigator.html#aef2cbb3d2ecad3e20c86bd8f0303d92d">MenuStack.Navigation.BaseMenuNavigator</a>.</p>
+
+</div>
+</div>
+<a id="a85f8e0e3cfdcb496f189b1855f3a3ead"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85f8e0e3cfdcb496f189b1855f3a3ead">&#9670;&nbsp;</a></span>Navigate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">override void MenuStack.Navigation.BackMenuNavigator.Navigate </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Triggers navigation </p>
 
-<p>Implements <a class="el" href="interface_menu_stack_1_1_navigation_1_1_i_navigator.html#afa7f365f230bdd24d21a9150e1a33057">MenuStack.Navigation.INavigator</a>.</p>
+<p>Reimplemented from <a class="el" href="class_menu_stack_1_1_navigation_1_1_base_menu_navigator.html#a9492bb9e88787ab132153036db2b8d55">MenuStack.Navigation.BaseMenuNavigator</a>.</p>
 
 </div>
 </div>
