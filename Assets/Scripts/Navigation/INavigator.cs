@@ -15,4 +15,17 @@ namespace MenuStack.Navigation
         /// </summary>
         void Navigate();
     }
+
+    /// <summary>
+    /// Internally defined names of <see cref="INavigator"/> methods
+    /// for reference in other parts of the codebase
+    /// </summary>
+    /// <remarks>
+    /// This is a workaround for unity mono not supporting https://msdn.microsoft.com/en-us/library/dn986596.aspx
+    /// </remarks>
+    public enum INavigatorMethodNames
+    {
+        None = 0,
+        Navigate
+    }
 }

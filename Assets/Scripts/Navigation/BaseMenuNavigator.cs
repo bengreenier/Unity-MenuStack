@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEditor.Events;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace MenuStack.Navigation
 {
@@ -20,7 +22,7 @@ namespace MenuStack.Navigation
         /// <summary>
         /// Triggers navigation
         /// </summary>
-        public void Navigate()
+        public virtual void Navigate()
         {
             this.GetComponentInParent<MenuRoot>().OpenAsync(this.GetNavigationLocation());
         }
