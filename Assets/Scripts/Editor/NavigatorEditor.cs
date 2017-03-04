@@ -1,16 +1,17 @@
-﻿using UnityEditor;
+﻿using MenuStack.Navigation;
+using UnityEditor;
 using UnityEditor.Events;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace MenuStack.Navigation
+namespace MenuStack.Editor
 {
     /// <summary>
     /// Custom <see cref="BaseMenuNavigator"/> editor to facilitate autowiring
     /// </summary>
     [CustomEditor(typeof(BaseMenuNavigator), editorForChildClasses: true)]
     [CanEditMultipleObjects]
-    public class NavigatorEditor : Editor
+    public class NavigatorEditor : UnityEditor.Editor
     {
         /// <summary>
         /// Unity editor hook for 

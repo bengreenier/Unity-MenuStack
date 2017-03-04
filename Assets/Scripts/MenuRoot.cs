@@ -2,6 +2,7 @@ using MenuStack.Animation;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace MenuStack
@@ -66,7 +67,7 @@ namespace MenuStack
         /// Overriden at runtime when <see cref="DisableRuntimeMenuTagging"/> is <c>false</c>
         /// </remarks>
         [Tooltip("Manually track specific menus as part of this MenuRoot")]
-        public Menu[] TrackedMenus;
+        public Menu[] TrackedMenus = null;
 
         /// <summary>
         /// The initially selected menu
@@ -75,13 +76,21 @@ namespace MenuStack
         /// If this isn't set, the first <see cref="Menu"/> in the heirarchy will be used
         /// </remarks>
         [Tooltip("Manually set the default selected menu")]
-        public Menu SelectedMenu;
+        public Menu SelectedMenu = null;
+
+        /// <summary>
+        /// Specific tagger to use to tag menus
+        /// </summary>
+        /// <remarks>
+        /// This is only used when <see cref="DisableRuntimeMenuTagging"/> is <c>false</c>
+        /// </remarks>
+        public RuntimeMenuTagger Tagger = null;
 
         /// <summary>
         /// Internal history stack
         /// </summary>
         private Stack<Menu> history = new Stack<Menu>();
-
+        
         /// <summary>
         /// Unity engine hook for object awake
         /// </summary>
@@ -89,7 +98,12 @@ namespace MenuStack
         {
             if (!DisableRuntimeMenuTagging)
             {
-                this.TrackedMenus = RTag(this.transform).ToArray();
+                if (Tagger == null)
+                {
+                    Tagger = new RuntimeMenuTagger(this.transform, this.MenuPrefix, this.OverlayPrefix);
+                }
+
+                this.TrackedMenus = Tagger.Tag().ToArray();
             }
 
             if (TrackedMenus != null)
@@ -110,45 +124,6 @@ namespace MenuStack
             {
                 OpenAsync(SelectedMenu);
             }
-        }
-
-        /// <summary>
-        /// Recursive tagger for menu components
-        /// </summary>
-        /// <remarks>
-        /// Only used when <see cref="DisableRuntimeMenuTagging"/> is <c>false</c>
-        /// </remarks>
-        /// <param name="root">the <see cref="Transform"/> at which tagging should start</param>
-        /// <returns>a list of tagged <see cref="Menu"/> components</returns>
-        List<Menu> RTag(Transform root)
-        {
-            List<Menu> tracked = new List<Menu>();
-            for (var i = 0; i < root.childCount; i++)
-            {
-                var child = root.GetChild(i);
-                var menu = child.GetComponent<Menu>();
-
-                if (child.name.StartsWith(MenuPrefix) && menu == null)
-                {
-                    menu = child.gameObject.AddComponent<Menu>();
-                }
-                else if (child.name.StartsWith(OverlayPrefix) && menu == null)
-                {
-                    menu = child.gameObject.AddComponent<OverlayMenu>();
-                }
-
-                if (menu != null)
-                {
-                    tracked.Add(menu);
-                }
-
-                if (child.childCount > 0)
-                {
-                    tracked.AddRange(RTag(child));
-                }
-            }
-
-            return tracked;
         }
 
 
