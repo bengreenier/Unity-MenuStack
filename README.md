@@ -62,7 +62,6 @@ That said, the general idea is as follows:
 
 + Add a `MenuAnimator` to some `Menu` that you want to animate
 + This will add an `Animator` that you'll need to setup
-+ The Animator should probably have some animations, which will require you to add an `Animation` component
 + The Animator will need an AnimatorController, that you should define
 + The AnimatorController should define two states, one for open, and one for close - by default these are expected to be named `Open` and `Close` (though you can change that)
 + The AnimatorController should define two triggers, to enter each of these states - these must be named the same as the states
