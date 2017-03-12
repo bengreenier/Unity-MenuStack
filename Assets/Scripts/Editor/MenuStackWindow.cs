@@ -44,6 +44,14 @@ namespace MenuStack.Editor
         private List<Menu> menus = new List<Menu>();
 
         /// <summary>
+        /// Internal reference to menus that we tagged just for this view
+        /// </summary>
+        /// <remarks>
+        /// These need to be removed when we're done with the view
+        /// </remarks>
+        private List<Menu> taggedMenus = new List<Menu>();
+
+        /// <summary>
         /// Internal history stack of <see cref="ObjectChange"/>s
         /// </summary>
         private Stack<ObjectChange> history = new Stack<ObjectChange>();
@@ -58,10 +66,13 @@ namespace MenuStack.Editor
                 selectedRoot = GameObject.FindObjectOfType<MenuRoot>();
             }
 
+            var existingMenus = RecursivelyGetMenus(selectedRoot.transform);
             var tagger = new RuntimeMenuTagger(selectedRoot.transform, selectedRoot.MenuPrefix, selectedRoot.OverlayPrefix);
-
+            var tagged = tagger.Tag();
+            
             menus.AddRange(selectedRoot.TrackedMenus);
-            menus.AddRange(tagger.Tag());
+            menus.AddRange(tagged);
+            taggedMenus.AddRange(tagged.Except(existingMenus));
 
             menus = menus.Where(m => m != null).Distinct().ToList();
         }
@@ -69,14 +80,53 @@ namespace MenuStack.Editor
         /// <summary>
         /// Undoes the history of all operations
         /// </summary>
-        void Cleanup()
+        /// <param name="keepState">indicates if we should keep the visibility states (like on save)</param>
+        /// <param name="destroy">indicates if we should destroy the menu</param>
+        void Cleanup(bool keepState = false)
         {
             while (history.Count > 0)
             {
                 var top = history.Pop();
 
-                top.Object.SetVisible(!top.Operation);
+                if (!keepState)
+                {
+                    top.Object.SetVisible(!top.Operation);
+                }
             }
+        }
+
+        /// <summary>
+        /// Untags all tagged menus that were tagged just for this view
+        /// </summary>
+        void Untag()
+        {
+            foreach (var tagged in taggedMenus)
+            {
+                DestroyImmediate(tagged);
+            }
+        }
+
+        /// <summary>
+        /// Self explanatory name
+        /// </summary>
+        /// <param name="root"></param>
+        /// <returns></returns>
+        List<Menu> RecursivelyGetMenus(Transform root)
+        {
+            List<Menu> menus = new List<Menu>();
+            for (var i = 0; i < root.childCount; i++)
+            {
+                var child = root.GetChild(i);
+
+                if (child.childCount > 0)
+                {
+                    menus.AddRange(RecursivelyGetMenus(child));
+                }
+
+                menus.AddRange(child.GetComponents<Menu>());
+            }
+
+            return menus;
         }
 
         /// <summary>
@@ -85,19 +135,18 @@ namespace MenuStack.Editor
         void OnGUI()
         {
             // create a label
-            EditorGUILayout.LabelField("Menus");
+            EditorGUILayout.LabelField("Menus  (v" + MenuRoot.Version + ")");
             EditorGUILayout.Separator();
 
             // only make the Reset button clickable if we have something to reset
             GUI.enabled = history.Count > 0;
             if (GUILayout.Button("Reset"))
             {
-                Cleanup();
+                Cleanup(keepState: false);
             }
             if (GUILayout.Button("Save"))
             {
-                // save just means don't undo
-                history.Clear();
+                Cleanup(keepState: true);
             }
             GUI.enabled = true;
 
@@ -143,6 +192,7 @@ namespace MenuStack.Editor
         void OnDestroy()
         {
             Cleanup();
+            Untag();
         }
 
         /// <summary>
@@ -151,6 +201,7 @@ namespace MenuStack.Editor
         void OnProjectChange()
         {
             Cleanup();
+            Untag();
         }
     }
 }
