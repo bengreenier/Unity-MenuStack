@@ -80,7 +80,7 @@ public class BasicTest
     }
 
     [Test]
-    public void DefaultInteractiveCheck()
+    public void DefaultInteractiveCheck_SelectableInteractive()
     {
         var menuRoot = new GameObject();
         var menu = menuRoot.AddComponent<MenuRoot>();
@@ -103,11 +103,45 @@ public class BasicTest
         var subMenu2Button = subMenu2ButtonRoot.AddComponent<UnityEngine.UI.Button>();
         subMenu2Button.enabled = true;
 
+        menu.PrefixDefaultInteractionType = MenuStack.Menu.InteractableType.SelectableInteractive;
         menu.TrackedMenus = new MenuStack.Menu[] { subMenu1, subMenu2 };
 
         menu.GetType().GetMethod("Awake", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance).Invoke(menu, null);
 
         Assert.IsTrue(subMenu1Button.interactable);
         Assert.IsFalse(subMenu2Button.interactable);
+    }
+
+    [Test]
+    public void DefaultInteractiveCheck_SelectableEnable()
+    {
+        var menuRoot = new GameObject();
+        var menu = menuRoot.AddComponent<MenuRoot>();
+
+        var subMenu1Root = new GameObject();
+        subMenu1Root.transform.parent = menuRoot.transform;
+        var subMenu1 = subMenu1Root.AddComponent<MenuStack.Menu>();
+
+        var subMenu1ButtonRoot = new GameObject();
+        subMenu1ButtonRoot.transform.parent = subMenu1Root.transform;
+        var subMenu1Button = subMenu1ButtonRoot.AddComponent<UnityEngine.UI.Button>();
+        subMenu1Button.enabled = true;
+
+        var subMenu2Root = new GameObject();
+        subMenu2Root.transform.parent = menuRoot.transform;
+        var subMenu2 = subMenu2Root.AddComponent<MenuStack.Menu>();
+
+        var subMenu2ButtonRoot = new GameObject();
+        subMenu2ButtonRoot.transform.parent = subMenu2Root.transform;
+        var subMenu2Button = subMenu2ButtonRoot.AddComponent<UnityEngine.UI.Button>();
+        subMenu2Button.enabled = true;
+
+        menu.PrefixDefaultInteractionType = MenuStack.Menu.InteractableType.SelectableEnable;
+        menu.TrackedMenus = new MenuStack.Menu[] { subMenu1, subMenu2 };
+
+        menu.GetType().GetMethod("Awake", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance).Invoke(menu, null);
+
+        Assert.IsTrue(subMenu1Button.enabled);
+        Assert.IsFalse(subMenu2Button.enabled);
     }
 }

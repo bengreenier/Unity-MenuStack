@@ -13,6 +13,24 @@ namespace MenuStack
     public class Menu : MonoBehaviour
     {
         /// <summary>
+        /// Represents a particular style of interactivity for a <see cref="Menu"/>
+        /// </summary>
+        public enum InteractableType
+        {
+            /// <summary>
+            /// Indicates that we should toggle interactivity by enabling or
+            /// disabling any attached <see cref="Selectable"/>s
+            /// </summary>
+            SelectableEnable,
+
+            /// <summary>
+            /// Indicates that we should toggle interactivity by changing the
+            /// <see cref="Selectable.interactable"/> property on any attached <see cref="Selectable"/>s
+            /// </summary>
+            SelectableInteractive
+        }
+
+        /// <summary>
         /// The runtime name for this menu
         /// </summary>
         public string Name
@@ -51,6 +69,15 @@ namespace MenuStack
         public string CustomName = null;
 
         /// <summary>
+        /// Determines how we handle interactivity for this menu
+        /// </summary>
+        /// <remarks>
+        /// <see cref="SetInteractable(bool)"/>
+        /// </remarks>
+        [Tooltip("Determines how we handle interactivity for this menu")]
+        public Menu.InteractableType InteractionType = InteractableType.SelectableInteractive;
+
+        /// <summary>
         /// Internal flag used to track when this object hasn't been <see cref="Start"/>-ed yet
         /// </summary>
         private bool uninitialized = true;
@@ -74,11 +101,31 @@ namespace MenuStack
         {
             if (!value && (this.Interactable || this.uninitialized))
             {
-                SetChildComponents<Selectable>(c => c.interactable = false);
+                SetChildComponents<Selectable>(c =>
+                {
+                    if (this.InteractionType == InteractableType.SelectableInteractive)
+                    {
+                        c.interactable = false;
+                    }
+                    else if (this.InteractionType == InteractableType.SelectableEnable)
+                    {
+                        c.enabled = false;
+                    }
+                });
             }
             else if (value && (!this.Interactable || this.uninitialized))
             {
-                SetChildComponents<Selectable>(c => c.interactable = true, skipMenus: true);
+                SetChildComponents<Selectable>(c =>
+                {
+                    if (this.InteractionType == InteractableType.SelectableInteractive)
+                    {
+                        c.interactable = true;
+                    }
+                    else if (this.InteractionType == InteractableType.SelectableEnable)
+                    {
+                        c.enabled = true;
+                    }
+                }, skipMenus: true);
             }
 
             this.Interactable = value;

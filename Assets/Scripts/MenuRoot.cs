@@ -18,6 +18,11 @@ namespace MenuStack
     public class MenuRoot : MonoBehaviour
     {
         /// <summary>
+        /// The current Unity-MenuStack version
+        /// </summary>
+        public static readonly Version Version = new Version(1, 2, 0);
+
+        /// <summary>
         /// Menu event handler
         /// </summary>
         /// <param name="menu">the changed menu</param>
@@ -59,6 +64,12 @@ namespace MenuStack
         /// </remarks>
         [Tooltip("The prefix with which overlay menu objects should begin")]
         public string OverlayPrefix = "overlay";
+
+        /// <summary>
+        /// An interactivity value to set on all <see cref="Menu"/>s that are created with prefixing
+        /// </summary>
+        [Tooltip("The InteractionType with which all generated menu objects should begin")]
+        public Menu.InteractableType PrefixDefaultInteractionType = Menu.InteractableType.SelectableInteractive;
 
         /// <summary>
         /// Manually specify <see cref="Menu"/>s that this <see cref="MenuRoot"/> controls
@@ -110,6 +121,7 @@ namespace MenuStack
             {
                 foreach (var menu in TrackedMenus)
                 {
+                    menu.InteractionType = this.PrefixDefaultInteractionType;
                     menu.SetInteractable(false);
                     menu.SetVisible(false);
                 }
