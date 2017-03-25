@@ -20,7 +20,7 @@ namespace MenuStack
         /// <summary>
         /// The current Unity-MenuStack version
         /// </summary>
-        public static readonly Version Version = new Version(1, 2, 0);
+        public static readonly Version Version = new Version(1, 3, 0);
 
         /// <summary>
         /// Menu event handler

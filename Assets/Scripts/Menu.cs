@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace MenuStack
@@ -78,9 +79,33 @@ namespace MenuStack
         public Menu.InteractableType InteractionType = InteractableType.SelectableInteractive;
 
         /// <summary>
+        /// The initially selected <see cref="Selectable"/> when this <see cref="Menu"/> is <see cref="Visible"/>
+        /// </summary>
+        [Tooltip("The initially selected selectable when this menu is visible")]
+        public Selectable InitialSelected = null;
+
+        /// <summary>
+        /// Determines if we use initially selected <see cref="Selectable"/> when returning to the menu
+        /// after the first time
+        /// </summary>
+        /// <remarks>
+        /// If this is <c>false</c> we'll instead keep history and return to the last selected <see cref="Selectable"/>
+        /// </remarks>
+        [Tooltip("Determines if we use the InitialSelected value when returning to the menu")]
+        public bool AlwaysUseInitialSelected = false;
+
+        /// <summary>
         /// Internal flag used to track when this object hasn't been <see cref="Start"/>-ed yet
         /// </summary>
         private bool uninitialized = true;
+
+        /// <summary>
+        /// Internal storage for the <see cref="Selectable"/> that was selected when we last viewed this menu
+        /// </summary>
+        /// <remarks>
+        /// This is only used when <see cref="AlwaysUseInitialSelected"/> is <c>false</c>
+        /// </remarks>
+        private Selectable previouslySelected = null;
 
         /// <summary>
         /// Unity engine hook for object start
@@ -101,8 +126,25 @@ namespace MenuStack
         {
             if (!value && (this.Interactable || this.uninitialized))
             {
-                SetChildComponents<Selectable>(c =>
+                // indicates if we've already tagged the selected this walk
+                // note: this is used as an early exit for the selection logic below
+                bool foundSelectedAlreadyThisWalk = false;
+
+                WalkChildComponents<Selectable>(c =>
                 {
+                    // determine the current selectable and track if if we aren't using AlwaysUseInitialSelected
+                    // for more info on this logic, see Selectable.Select() from UnityEngine.UI
+                    if(!this.AlwaysUseInitialSelected &&
+                        !foundSelectedAlreadyThisWalk &&
+                        EventSystem.current != null &&
+                        c.gameObject == EventSystem.current.currentSelectedGameObject &&
+                        !EventSystem.current.alreadySelecting)
+                    {
+                        this.previouslySelected = c;
+                        foundSelectedAlreadyThisWalk = true;
+                    }
+
+                    // mark everything with the correct "closed" state
                     if (this.InteractionType == InteractableType.SelectableInteractive)
                     {
                         c.interactable = false;
@@ -115,8 +157,13 @@ namespace MenuStack
             }
             else if (value && (!this.Interactable || this.uninitialized))
             {
-                SetChildComponents<Selectable>(c =>
+                // indicates if we've already reset the selected this walk
+                // note: this is used as an early exit for the select logic below
+                bool setSelectedAlreadyThisWalk = false;
+
+                WalkChildComponents<Selectable>(c =>
                 {
+                    // mark everything with the correct "opened" state
                     if (this.InteractionType == InteractableType.SelectableInteractive)
                     {
                         c.interactable = true;
@@ -124,6 +171,28 @@ namespace MenuStack
                     else if (this.InteractionType == InteractableType.SelectableEnable)
                     {
                         c.enabled = true;
+                    }
+
+                    // determine which selectable should be selected first, and select it
+                    // if InitialSelected || previouslySelected == null, select the first one
+                    // note: this if has weird syntax to make it easier to understand...
+                    if
+                    (
+                        !setSelectedAlreadyThisWalk &&
+                        (
+                            (this.AlwaysUseInitialSelected &&
+                                (this.InitialSelected == c ||
+                                this.InitialSelected == null)
+                            ) ||
+                            (!this.AlwaysUseInitialSelected &&
+                                (this.previouslySelected == c ||
+                                this.previouslySelected == null)
+                            )
+                        )
+                    )
+                    {
+                        c.Select();
+                        setSelectedAlreadyThisWalk = true;
                     }
                 }, skipMenus: true);
             }
@@ -153,12 +222,12 @@ namespace MenuStack
         }
 
         /// <summary>
-        /// Internal helper to enable/disable child <see cref="Behaviour"/>s
+        /// Internal helper to walk child <see cref="Behaviour"/>s
         /// </summary>
         /// <typeparam name="TComp">component type</typeparam>
-        /// <param name="setter">a function capable of setting</param>
-        /// <param name="skipMenus">indicates if we should include of exclude children with <see cref="Menu"/> components</param>
-        private void SetChildComponents<TComp>(Action<TComp> setter, bool skipMenus = false) where TComp : Behaviour
+        /// <param name="func">a function called for each <see cref="Behaviour"/></param>
+        /// <param name="skipMenus">indicates if we should include or exclude children with <see cref="Menu"/> components</param>
+        private void WalkChildComponents<TComp>(Action<TComp> func, bool skipMenus = false) where TComp : Behaviour
         {
             foreach (var comp in this.GetComponentsInChildren<TComp>())
             {
@@ -167,7 +236,7 @@ namespace MenuStack
                     continue;
                 }
 
-                setter(comp);
+                func(comp);
             }
         }
 
