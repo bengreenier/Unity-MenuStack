@@ -112,6 +112,12 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a2c253f93e3bd6023098efcbe53efee4c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_menu_stack_1_1_menu.html#af67e28d7803349cec9df96f340dfe157">Menu.InteractableType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_menu_stack_1_1_menu.html#a2c253f93e3bd6023098efcbe53efee4c">InteractionType</a> = <a class="el" href="class_menu_stack_1_1_menu.html#af67e28d7803349cec9df96f340dfe157ada5dc8dc3e94d4dbd78addf1e37d7d79">InteractableType.SelectableInteractive</a></td></tr>
 <tr class="memdesc:a2c253f93e3bd6023098efcbe53efee4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines how we handle interactivity for this menu  <a href="#a2c253f93e3bd6023098efcbe53efee4c">More...</a><br /></td></tr>
 <tr class="separator:a2c253f93e3bd6023098efcbe53efee4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee3140d0907c1552efa3c2140bb5ec39"><td class="memItemLeft" align="right" valign="top">Selectable&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_menu_stack_1_1_menu.html#aee3140d0907c1552efa3c2140bb5ec39">InitialSelected</a> = null</td></tr>
+<tr class="memdesc:aee3140d0907c1552efa3c2140bb5ec39"><td class="mdescLeft">&#160;</td><td class="mdescRight">The initially selected Selectable when this <a class="el" href="class_menu_stack_1_1_menu.html" title="Represents any menu (a logical grouping of ui elements) within a MenuRoot ">Menu</a> is <a class="el" href="class_menu_stack_1_1_menu.html#a664d271465e0e710e9aebaf0ab09c0a3" title="Indicates if this menu is visible ">Visible</a>  <a href="#aee3140d0907c1552efa3c2140bb5ec39">More...</a><br /></td></tr>
+<tr class="separator:aee3140d0907c1552efa3c2140bb5ec39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbda1c597ecef4c2a67ed934c705e72a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_menu_stack_1_1_menu.html#acbda1c597ecef4c2a67ed934c705e72a">AlwaysUseInitialSelected</a> = false</td></tr>
+<tr class="memdesc:acbda1c597ecef4c2a67ed934c705e72a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines if we use initially selected Selectable when returning to the menu after the first time  <a href="#acbda1c597ecef4c2a67ed934c705e72a">More...</a><br /></td></tr>
+<tr class="separator:acbda1c597ecef4c2a67ed934c705e72a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
@@ -230,6 +236,23 @@ Properties</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="acbda1c597ecef4c2a67ed934c705e72a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbda1c597ecef4c2a67ed934c705e72a">&#9670;&nbsp;</a></span>AlwaysUseInitialSelected</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MenuStack.Menu.AlwaysUseInitialSelected = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Determines if we use initially selected Selectable when returning to the menu after the first time </p>
+<p>If this is <code>false</code> we'll instead keep history and return to the last selected Selectable </p>
+
+</div>
+</div>
 <a id="ac823c8fdd919cbbd05cef3525e3b6c14"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac823c8fdd919cbbd05cef3525e3b6c14">&#9670;&nbsp;</a></span>CustomName</h2>
 
@@ -244,6 +267,22 @@ Properties</h2></td></tr>
 
 <p>A custom name for this menu </p>
 <p>Overrides the default <a class="el" href="class_menu_stack_1_1_menu.html#aee81a1f11823976cb1007d04e371617f" title="The runtime name for this menu ">Name</a> </p>
+
+</div>
+</div>
+<a id="aee3140d0907c1552efa3c2140bb5ec39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee3140d0907c1552efa3c2140bb5ec39">&#9670;&nbsp;</a></span>InitialSelected</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Selectable MenuStack.Menu.InitialSelected = null</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The initially selected Selectable when this <a class="el" href="class_menu_stack_1_1_menu.html" title="Represents any menu (a logical grouping of ui elements) within a MenuRoot ">Menu</a> is <a class="el" href="class_menu_stack_1_1_menu.html#a664d271465e0e710e9aebaf0ab09c0a3" title="Indicates if this menu is visible ">Visible</a> </p>
 
 </div>
 </div>
