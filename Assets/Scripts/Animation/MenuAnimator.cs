@@ -48,8 +48,11 @@ namespace MenuStack.Animation
         /// </summary>
         void Start()
         {
-            this.animator = this.GetComponent<Animator>();
-            
+            if (this.animator == null)
+            {
+                this.animator = this.GetComponent<Animator>();
+            }
+
             if (!string.IsNullOrEmpty(this.DefaultStateName))
             {
                 this.animator.Play(this.DefaultStateName, this.AnimationLayer);
@@ -68,11 +71,16 @@ namespace MenuStack.Animation
         /// Opens the menu, using the underlying animator
         /// </summary>
         /// <remarks>
-        /// This method doesn't async complete until the animation is complete
+        /// This method doesn't async complete until the animation (and motion) is complete
         /// </remarks>
         /// <returns>async operation result</returns>
         public IEnumerator OpenAsync()
         {
+            if (this.animator == null)
+            {
+                this.animator = this.GetComponent<Animator>();
+            }
+            
             if (this.animator.GetCurrentAnimatorStateInfo(this.AnimationLayer).IsName(this.OpenStateName))
             {
                 yield break;
@@ -81,39 +89,36 @@ namespace MenuStack.Animation
             this.animator.SetTrigger(this.OpenStateName);
 
             // Note: this will expose a bug where if your animator doesn't function properly
-            // (specifically if it doesn't go to and stay in the close state when the close state trigger is set)
+            // (specifically if it doesn't go to and stay in the open state when the open state trigger is set)
             // we'll get stuck here forever. this is acceptable for now
-            while (!this.animator.GetCurrentAnimatorStateInfo(this.AnimationLayer).IsName(this.OpenStateName) ||
-                this.animator.IsInTransition(this.AnimationLayer))
-            {
-                yield return new WaitForEndOfFrame();
-            }
+            yield return new WaitForAnimationState(this.animator, this.OpenStateName, this.AnimationLayer);
         }
 
         /// <summary>
         /// Closes the menu, using the underlying animator
         /// </summary>
         /// <remarks>
-        /// This method doesn't async complete until the animation is complete
+        /// This method doesn't async complete until the animation (and motion) is complete
         /// </remarks>
         /// <returns>async operation result</returns>
         public IEnumerator CloseAsync()
         {
+            if (this.animator == null)
+            {
+                this.animator = this.GetComponent<Animator>();
+            }
+
             if (this.animator.GetCurrentAnimatorStateInfo(this.AnimationLayer).IsName(this.CloseStateName))
             {
                 yield break;
             }
 
             this.animator.SetTrigger(this.CloseStateName);
-            
+
             // Note: this will expose a bug where if your animator doesn't function properly
             // (specifically if it doesn't go to and stay in the close state when the close state trigger is set)
             // we'll get stuck here forever. this is acceptable for now
-            while (!this.animator.GetCurrentAnimatorStateInfo(this.AnimationLayer).IsName(this.CloseStateName) ||
-                this.animator.IsInTransition(this.AnimationLayer))
-            {
-                yield return new WaitForEndOfFrame();
-            }
+            yield return new WaitForAnimationState(this.animator, this.CloseStateName, this.AnimationLayer);
         }
     }
 }
