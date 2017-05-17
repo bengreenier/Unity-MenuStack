@@ -1,7 +1,4 @@
 var searchData=
 [
-  ['menu',['Menu',['../class_menu_stack_1_1_menu.html',1,'MenuStack']]],
-  ['menuanimator',['MenuAnimator',['../class_menu_stack_1_1_animation_1_1_menu_animator.html',1,'MenuStack::Animation']]],
-  ['menuroot',['MenuRoot',['../class_menu_stack_1_1_menu_root.html',1,'MenuStack']]],
-  ['menustackwindow',['MenuStackWindow',['../class_menu_stack_1_1_editor_1_1_menu_stack_window.html',1,'MenuStack::Editor']]]
+  ['inavigator',['INavigator',['../interface_menu_stack_1_1_navigation_1_1_i_navigator.html',1,'MenuStack::Navigation']]]
 ];

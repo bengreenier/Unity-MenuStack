@@ -81,11 +81,13 @@ Inheritance diagram for MenuStack.Navigation.BaseMenuNavigator:</div>
  <div class="center">
   <img src="class_menu_stack_1_1_navigation_1_1_base_menu_navigator.png" usemap="#MenuStack.Navigation.BaseMenuNavigator_map" alt=""/>
   <map id="MenuStack.Navigation.BaseMenuNavigator_map" name="MenuStack.Navigation.BaseMenuNavigator_map">
-<area href="interface_menu_stack_1_1_navigation_1_1_i_navigator.html" title="Defines a common interface that all navigators implement " alt="MenuStack.Navigation.INavigator" shape="rect" coords="550,0,815,24"/>
-<area href="class_menu_stack_1_1_navigation_1_1_back_menu_navigator.html" title="Represents a menu navigator that goes back (effectively closing the current menu) in the MenuRoot ..." alt="MenuStack.Navigation.BackMenuNavigator" shape="rect" coords="0,112,265,136"/>
-<area href="class_menu_stack_1_1_navigation_1_1_direct_menu_navigator.html" title="Represents a menu navigator that navigates to a specific Menu in the MenuRoot " alt="MenuStack.Navigation.DirectMenuNavigator" shape="rect" coords="275,112,540,136"/>
-<area href="class_menu_stack_1_1_navigation_1_1_next_menu_navigator.html" title="Represents a menu navigator that navigates the next Menu in the MenuRoot " alt="MenuStack.Navigation.NextMenuNavigator" shape="rect" coords="550,112,815,136"/>
-<area href="class_menu_stack_1_1_navigation_1_1_regex_menu_navigator.html" title="Represents a menu navigator that navigates to the first Menu in the MenuRoot thats name matches some ..." alt="MenuStack.Navigation.RegexMenuNavigator" shape="rect" coords="825,112,1090,136"/>
+<area href="interface_menu_stack_1_1_navigation_1_1_i_navigator.html" title="Defines a common interface that all navigators implement " alt="MenuStack.Navigation.INavigator" shape="rect" coords="828,0,1094,24"/>
+<area href="class_menu_stack_1_1_navigation_1_1_back_menu_navigator.html" title="Represents a menu navigator that goes back (effectively closing the current menu) in the MenuRoot ..." alt="MenuStack.Navigation.BackMenuNavigator" shape="rect" coords="0,112,266,136"/>
+<area href="class_menu_stack_1_1_navigation_1_1_direct_menu_navigator.html" title="Represents a menu navigator that navigates to a specific Menu in the MenuRoot " alt="MenuStack.Navigation.DirectMenuNavigator" shape="rect" coords="276,112,542,136"/>
+<area href="class_menu_stack_1_1_navigation_1_1_exit_menu_navigator.html" title="Represents a menu navigator that exits the application " alt="MenuStack.Navigation.ExitMenuNavigator" shape="rect" coords="552,112,818,136"/>
+<area href="class_menu_stack_1_1_navigation_1_1_next_menu_navigator.html" title="Represents a menu navigator that navigates the next Menu in the MenuRoot " alt="MenuStack.Navigation.NextMenuNavigator" shape="rect" coords="828,112,1094,136"/>
+<area href="class_menu_stack_1_1_navigation_1_1_regex_menu_navigator.html" title="Represents a menu navigator that navigates to the first Menu in the MenuRoot thats name matches some ..." alt="MenuStack.Navigation.RegexMenuNavigator" shape="rect" coords="1104,112,1370,136"/>
+<area href="class_menu_stack_1_1_navigation_1_1_scene_menu_navigator.html" title="Represents a menu navigator that loads a specific scene using the SceneManager " alt="MenuStack.Navigation.SceneMenuNavigator" shape="rect" coords="1380,112,1646,136"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -130,7 +132,7 @@ Protected Member Functions</h2></td></tr>
 <p>Provides a location to navigate to, when navigation occurs </p>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_menu_stack_1_1_menu.html" title="Represents any menu (a logical grouping of ui elements) within a MenuRoot ">Menu</a> to navigate to</dd></dl>
 
-<p>Implemented in <a class="el" href="class_menu_stack_1_1_navigation_1_1_regex_menu_navigator.html#add92de463bb54a0f995fab14a93862a0">MenuStack.Navigation.RegexMenuNavigator</a>, <a class="el" href="class_menu_stack_1_1_navigation_1_1_back_menu_navigator.html#ab4c18cae3aa5a251dd8456775fa97eda">MenuStack.Navigation.BackMenuNavigator</a>, <a class="el" href="class_menu_stack_1_1_navigation_1_1_direct_menu_navigator.html#a6f1b199cc7ae117cf2df85af6aad5aaa">MenuStack.Navigation.DirectMenuNavigator</a>, and <a class="el" href="class_menu_stack_1_1_navigation_1_1_next_menu_navigator.html#aba34ce8267f789956ff0927fcfa3f59c">MenuStack.Navigation.NextMenuNavigator</a>.</p>
+<p>Implemented in <a class="el" href="class_menu_stack_1_1_navigation_1_1_exit_menu_navigator.html#afac0ea4dee0ab13e176bc3b47d986696">MenuStack.Navigation.ExitMenuNavigator</a>, <a class="el" href="class_menu_stack_1_1_navigation_1_1_scene_menu_navigator.html#a24f0fd41ea42f381e0aa3e51add00c39">MenuStack.Navigation.SceneMenuNavigator</a>, <a class="el" href="class_menu_stack_1_1_navigation_1_1_regex_menu_navigator.html#add92de463bb54a0f995fab14a93862a0">MenuStack.Navigation.RegexMenuNavigator</a>, <a class="el" href="class_menu_stack_1_1_navigation_1_1_back_menu_navigator.html#ab4c18cae3aa5a251dd8456775fa97eda">MenuStack.Navigation.BackMenuNavigator</a>, <a class="el" href="class_menu_stack_1_1_navigation_1_1_direct_menu_navigator.html#a6f1b199cc7ae117cf2df85af6aad5aaa">MenuStack.Navigation.DirectMenuNavigator</a>, and <a class="el" href="class_menu_stack_1_1_navigation_1_1_next_menu_navigator.html#aba34ce8267f789956ff0927fcfa3f59c">MenuStack.Navigation.NextMenuNavigator</a>.</p>
 
 </div>
 </div>
@@ -161,7 +163,7 @@ Protected Member Functions</h2></td></tr>
 
 <p>Implements <a class="el" href="interface_menu_stack_1_1_navigation_1_1_i_navigator.html#afa7f365f230bdd24d21a9150e1a33057">MenuStack.Navigation.INavigator</a>.</p>
 
-<p>Reimplemented in <a class="el" href="class_menu_stack_1_1_navigation_1_1_back_menu_navigator.html#a85f8e0e3cfdcb496f189b1855f3a3ead">MenuStack.Navigation.BackMenuNavigator</a>.</p>
+<p>Reimplemented in <a class="el" href="class_menu_stack_1_1_navigation_1_1_exit_menu_navigator.html#a95d0c3109a8cb85b88d0ebedfe02160d">MenuStack.Navigation.ExitMenuNavigator</a>, <a class="el" href="class_menu_stack_1_1_navigation_1_1_scene_menu_navigator.html#ae47b2433bbdd14190ae0462a4a86c617">MenuStack.Navigation.SceneMenuNavigator</a>, and <a class="el" href="class_menu_stack_1_1_navigation_1_1_back_menu_navigator.html#a85f8e0e3cfdcb496f189b1855f3a3ead">MenuStack.Navigation.BackMenuNavigator</a>.</p>
 
 </div>
 </div>

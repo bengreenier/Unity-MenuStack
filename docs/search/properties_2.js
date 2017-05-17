@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['visible',['Visible',['../class_menu_stack_1_1_menu.html#a664d271465e0e710e9aebaf0ab09c0a3',1,'MenuStack::Menu']]]
+  ['name',['Name',['../class_menu_stack_1_1_menu.html#aee81a1f11823976cb1007d04e371617f',1,'MenuStack::Menu']]]
 ];

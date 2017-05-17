@@ -1,4 +1,8 @@
 var searchData=
 [
-  ['prefixdefaultinteractiontype',['PrefixDefaultInteractionType',['../class_menu_stack_1_1_menu_root.html#a4e63830053b0077eaf54ac578c06857d',1,'MenuStack::MenuRoot']]]
+  ['name',['Name',['../class_menu_stack_1_1_menu.html#aee81a1f11823976cb1007d04e371617f',1,'MenuStack::Menu']]],
+  ['navigate',['Navigate',['../class_menu_stack_1_1_navigation_1_1_back_menu_navigator.html#a85f8e0e3cfdcb496f189b1855f3a3ead',1,'MenuStack.Navigation.BackMenuNavigator.Navigate()'],['../class_menu_stack_1_1_navigation_1_1_base_menu_navigator.html#a9492bb9e88787ab132153036db2b8d55',1,'MenuStack.Navigation.BaseMenuNavigator.Navigate()'],['../class_menu_stack_1_1_navigation_1_1_exit_menu_navigator.html#a95d0c3109a8cb85b88d0ebedfe02160d',1,'MenuStack.Navigation.ExitMenuNavigator.Navigate()'],['../interface_menu_stack_1_1_navigation_1_1_i_navigator.html#afa7f365f230bdd24d21a9150e1a33057',1,'MenuStack.Navigation.INavigator.Navigate()'],['../class_menu_stack_1_1_navigation_1_1_scene_menu_navigator.html#ae47b2433bbdd14190ae0462a4a86c617',1,'MenuStack.Navigation.SceneMenuNavigator.Navigate()']]],
+  ['navigateto',['NavigateTo',['../class_menu_stack_1_1_navigation_1_1_direct_menu_navigator.html#a82109d7d7b6124e7b69e026945bd2900',1,'MenuStack::Navigation::DirectMenuNavigator']]],
+  ['navigatoreditor',['NavigatorEditor',['../class_menu_stack_1_1_editor_1_1_navigator_editor.html',1,'MenuStack::Editor']]],
+  ['nextmenunavigator',['NextMenuNavigator',['../class_menu_stack_1_1_navigation_1_1_next_menu_navigator.html',1,'MenuStack::Navigation']]]
 ];

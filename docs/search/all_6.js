@@ -1,9 +1,4 @@
 var searchData=
 [
-  ['inavigator',['INavigator',['../interface_menu_stack_1_1_navigation_1_1_i_navigator.html',1,'MenuStack::Navigation']]],
-  ['inavigatormethodnames',['INavigatorMethodNames',['../namespace_menu_stack_1_1_navigation.html#abe4f5a2cb0181c4053075b93da994456',1,'MenuStack::Navigation']]],
-  ['initialselected',['InitialSelected',['../class_menu_stack_1_1_menu.html#aee3140d0907c1552efa3c2140bb5ec39',1,'MenuStack::Menu']]],
-  ['interactable',['Interactable',['../class_menu_stack_1_1_menu.html#a0a3c946e6f59d62544a7b612566ff124',1,'MenuStack::Menu']]],
-  ['interactabletype',['InteractableType',['../class_menu_stack_1_1_menu.html#af67e28d7803349cec9df96f340dfe157',1,'MenuStack::Menu']]],
-  ['interactiontype',['InteractionType',['../class_menu_stack_1_1_menu.html#a2c253f93e3bd6023098efcbe53efee4c',1,'MenuStack::Menu']]]
+  ['getnavigationlocation',['GetNavigationLocation',['../class_menu_stack_1_1_navigation_1_1_back_menu_navigator.html#ab4c18cae3aa5a251dd8456775fa97eda',1,'MenuStack.Navigation.BackMenuNavigator.GetNavigationLocation()'],['../class_menu_stack_1_1_navigation_1_1_base_menu_navigator.html#aef2cbb3d2ecad3e20c86bd8f0303d92d',1,'MenuStack.Navigation.BaseMenuNavigator.GetNavigationLocation()'],['../class_menu_stack_1_1_navigation_1_1_direct_menu_navigator.html#a6f1b199cc7ae117cf2df85af6aad5aaa',1,'MenuStack.Navigation.DirectMenuNavigator.GetNavigationLocation()'],['../class_menu_stack_1_1_navigation_1_1_exit_menu_navigator.html#afac0ea4dee0ab13e176bc3b47d986696',1,'MenuStack.Navigation.ExitMenuNavigator.GetNavigationLocation()'],['../class_menu_stack_1_1_navigation_1_1_next_menu_navigator.html#aba34ce8267f789956ff0927fcfa3f59c',1,'MenuStack.Navigation.NextMenuNavigator.GetNavigationLocation()'],['../class_menu_stack_1_1_navigation_1_1_regex_menu_navigator.html#add92de463bb54a0f995fab14a93862a0',1,'MenuStack.Navigation.RegexMenuNavigator.GetNavigationLocation()'],['../class_menu_stack_1_1_navigation_1_1_scene_menu_navigator.html#a24f0fd41ea42f381e0aa3e51add00c39',1,'MenuStack.Navigation.SceneMenuNavigator.GetNavigationLocation()']]]
 ];

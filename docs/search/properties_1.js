@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['name',['Name',['../class_menu_stack_1_1_menu.html#aee81a1f11823976cb1007d04e371617f',1,'MenuStack::Menu']]]
+  ['keepwaiting',['keepWaiting',['../class_menu_stack_1_1_animation_1_1_wait_for_animation_state.html#af971d59035ef6f77ea1f42e891a1d8f0',1,'MenuStack::Animation::WaitForAnimationState']]]
 ];
